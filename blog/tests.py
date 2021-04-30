@@ -20,7 +20,7 @@ class BlogTests(TestCase):
         self.assertEqual(f'{self.post.title}', 'checking title')
         self.assertEqual(f'{self.post.author}', 'checker')
         self.assertEqual(f'{self.post.body}', 'checking body')
-    
+
     def test_post_listView(self):
         response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
@@ -36,7 +36,7 @@ class BlogTests(TestCase):
         self.assertTemplateUsed(response, 'postDetail.html')
     
     def test_post_createView(self):
-        response = self.client.post(reverse('post_new'), {'title': 'New title', 'body': 'New file', 'author': self.user.id})
+        response = self.client.post(reverse('postNew'), {'title': 'New title', 'body': 'New file', 'author': self.user.id})
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Post.objects.last().title, 'New title')
         self.assertEqual(Post.objects.last().body, 'New file')
@@ -46,6 +46,9 @@ class BlogTests(TestCase):
         self.assertEqual(response.status_code, 302)
     
     def test_post_deleteView(self):
-        response = self.client.post(
-        reverse('postDelete', args='1'))
+        response = self.client.post(reverse('postDelete', args='1'))
         self.assertEqual(response.status_code, 302)
+
+
+    
+

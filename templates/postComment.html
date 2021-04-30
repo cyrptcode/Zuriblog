@@ -2,22 +2,22 @@
 {% block title %}Articles{% endblock title %}
 {% block content %}
 {% for Post in object_list %}
-       <div class="card-body">
-        <p>{{ article.body }}</p>
-        <a href="{% url 'postEdit' article.pk %}">Edit</a> |
-    <a href="{% url 'article_delete' article.pk %}">Delete</a>
-    </div>
-    <div class="card-footer">
-        {% for comment in article.comments.all %}
-    <p>
-        <span class="font-weight-bold">
-        {{ comment.author }} &middot;
-        </span>
-        {{ CommentForm }}
-    </p>
-    {% endfor %}
-       </div>
-    </div>
+<div class="card-body">
+<p>{{ article.body }}</p>
+<a href="{% url 'postEdit' article.pk %}">Edit</a> |
+<a href="{% url 'article_delete' article.pk %}">Delete</a>
+</div>
+<div class="card-footer">
+{% for comment in article.comments.all %}
+<p>
+<span class="font-weight-bold">
+{{ comment.author }} &middot;
+</span>
+{{ CommentForm }}
+</p>
+{% endfor %}
+</div>
+</div>
 <br/>
 {% endfor %}
 {% endblock content %}

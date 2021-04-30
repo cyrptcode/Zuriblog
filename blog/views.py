@@ -28,7 +28,7 @@ class BlogCreateView(LoginRequiredMixin, CreateView):
 class BlogUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     template_name = 'postEdit.html'
-    fields = ['body']
+    fields = ['title', 'body']
 
 class BlogDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
