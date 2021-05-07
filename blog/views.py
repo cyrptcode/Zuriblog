@@ -1,19 +1,21 @@
 from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.mixins  import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy 
+from django.urls import reverse_lazy
 from .models import Post, Comment
 # Create your views here.
 
 
-class BlogListView(LoginRequiredMixin, ListView):
+class BlogListView(ListView):
     model = Post
     template_name = 'home.html'
 
-class BLogDetailView(LoginRequiredMixin, DetailView):
+
+class BLogDetailView(DetailView):
     model = Post
     template_name = 'postDetail.html'
+
 
 class BlogCreateView(LoginRequiredMixin, CreateView):
     model = Post
@@ -30,10 +32,13 @@ class BlogUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'postEdit.html'
     fields = ['title', 'body']
 
+
 class BlogDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     template_name = 'postDelete.html'
     success_url = reverse_lazy('home')
+
+
 '''
 def BlogDetailView(request, pk):
     post = get_object_or_404(Post, pk=pk)
